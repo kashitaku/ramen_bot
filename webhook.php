@@ -17,22 +17,12 @@
 
 require_once('./LINEBotTiny.php');
 require_once __DIR__ . '/vendor/autoload.php';
-use  josegonzalez\Dotenv\Loader as Dotenv;
-    //初期化
-    //.envの保存場所指定（カレントに設定）
-
-/**
-$dotenv = new Dotenv\Dotenv(__DIR__ . '/..');
-$dotenv->load(__DIR__ . '/..');
-    $dotenv = new Dotenv\Dotenv(__DIR__);
-    $dotenv->load();
-
-**/
+use josegonzalez\Dotenv\Loader as Dotenv;
 $appDir = __DIR__;
-  Dotenv::load([
-      'filepath' =>  $appDir . '/.env',
-      'toEnv' => true
-  ]);
+Dotenv::load([
+	'filepath' => $appDir . '/.env',
+	'toEnv' => true
+]);
 
 //LINE developerアクセス
 $channelAccessToken = $_ENV['ChannelAccessToken'] ;
@@ -110,7 +100,7 @@ foreach ($client->parseEvents() as $event) {
 					// ぐるなびapiURL
 					$uri = 'https://api.gnavi.co.jp/RestSearchAPI/v3/';
 					// ぐるなびアクセスキー
-					$gnaviaccesskey = '630813f39d7d4043d69a42f220ddc04e';
+					$gnaviaccesskey = $_ENV['gnaviaccesskey'];
 					// ラーメン屋さんを意味するぐるなびのコード(小業態マスタ取得APIをコールして調査)
 					$category_s1 = 'RSFST08008';
 					// つけ麺屋さんを意味するぐるなびのコード(小業態マスタ取得APIをコールして調査)
